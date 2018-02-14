@@ -14,25 +14,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class InsuranceTest {
-
-    WebDriver driver;
-    String baseUrl;
-
-    @Before
-    public void beforeMethod() throws IOException {
-        System.setProperty("webdriver.gecko.driver", "drv/geckodriver2.exe");
-        System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
-        baseUrl = "https://www.rgs.ru/";
-        driver=new GeckoDriverService();
-        driver.manage().timeouts().implicitlyWait( 30, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get(baseUrl);
-
-    }
+public class InsuranceTest extends BaseTest{
 
     @Test
     public void testInsurance () {
+        driver.get(baseUrl);
         driver.findElement(By.xpath("//ol[contains(@class,'rgs-menu')]/li/*[contains(text(),'Страхование')]")).click();
         driver.findElement(By.xpath("//div[contains(@class,'rgs-main-menu-category')]//a[contains(text(),'ДМС')]")).click();
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
@@ -67,16 +53,6 @@ public class InsuranceTest {
         Assert.assertEquals( "Ivanovich",
                 driver.findElement(By.name("MiddleName")).getAttribute( "value"));
     }
-
-        public void fillField(By locator, String value){
-            driver.findElement(locator).clear();
-            driver.findElement(locator).sendKeys(value);
-        }
-            @After
-        public void afterTest (){
-                 driver.quit();
-
-        }
 
     }
 

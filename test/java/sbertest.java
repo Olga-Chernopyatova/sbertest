@@ -14,24 +14,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class sbertest {
-    WebDriver driver;
-    String baseUrl;
+public class sbertest extends BaseTest{
 
-    @Before
-    public void beforeTest()  {
-        System.setProperty("webdriver.gecko.driver", "drv/geckodriver2.exe");
-        System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
-        baseUrl = "http://www.sberbank.ru/ru/person";
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait( 30, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get(baseUrl);
-
-    }
 
     @Test
+    @Ignore
     public void testSber () {
+        driver.get(baseUrl);
         driver.findElement(By.xpath("//div[contains(@class,'header_more_nav')]//*[contains(@aria-label,'Застраховать себя')]")).click();
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
         WebElement sendbtn= driver.findElement(By.xpath("//div//*[contains(text(),'путешественников')]"));
@@ -65,7 +54,7 @@ public class sbertest {
         fillField(By.name("passport_number"), "123456");
         driver.findElement(By.name("issueDate")).click();
         fillField(By.name("issueDate"), "01.01.1985");
-        fillField(By.name("issuePlace"), "1111 ");
+        fillField(By.name("issuePlace"), "Sberbank ");
 
 
         Assert.assertEquals("Номер телефона вводится в 10-ти значном формате"), driver.findElement(By.xpath("//*[contains(text(),'Номер телефона')]")).getText();
@@ -88,16 +77,6 @@ public class sbertest {
         driver.findElement(By.xpath("//*[contains(text(),'Продолжить')]")).click();
 
         Assert.assertEquals("Заполнены не все обязательные поля", driver.findElement(By.xpath("/*[contains(text(),'обязательные')]")).getText());
-    }
-
-    public void fillField(By locator, String value){
-        driver.findElement(locator).clear();
-        driver.findElement(locator).sendKeys(value);
-    }
-    @After
-    public void afterTest (){
-        driver.quit();
-
     }
 
 }
