@@ -37,36 +37,38 @@ public class sbertest {
         WebElement sendbtn= driver.findElement(By.xpath("//div//*[contains(text(),'путешественников')]"));
         wait.until(ExpectedConditions.visibilityOf(sendbtn)).click();
 
-        WebElement title = driver.findElement(By.xpath("//h4[@class='modal-title']"));
-        wait.until(ExpectedConditions.visibilityOf(title));
+        WebElement title = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='sbrf-rich-outer']//h1"))));
 
         Assert.assertEquals("Страхование путешественников", title.getText());
 
-        driver.findElement(By.xpath("//li//*[contains(text(),'Оформить онлайн')]")).click();
+        driver.findElement(By.xpath("//*/img[contains(@src, 'banner-zashita-traveler.jpg')]")).click();
+        for (String winHandle : driver.getWindowHandles()) {
+            driver.switchTo().window(winHandle);
+        }
         driver.findElement(By.xpath("//*[contains(text(),'Оформить сейчас')]")).click();
         driver.findElement(By.xpath("//*[contains(text(),'Минимальная')]")).click();
-        driver.findElement(By.xpath("//*[contains(text(),'Оформить')]")).click();
+        driver.findElement(By.xpath("//span[contains(text(),'Оформить')]")).click();
 
-        fillField(By.name("Surname"), "Ivanov");
-        fillField(By.name("Given Names"), "Ivan");
-        driver.findElement(By.id("//*[@id='dp1518469728837']")).click();
-        driver.findElement(By.id("//*[@id='dp1518550956743']")).click();
-        driver.findElement(By.id("//*[@id='dp1518550956743']")).sendKeys(01.01.1983);
+        fillField(By.name("insured0_surname"), "Ivanov");
+        fillField(By.name("insured0_name"), "Ivan");
+        driver.findElement(By.name("insured0_birthDate")).click();
+        fillField(By.name("insured0_birthDate"), "01.01.1983");
 
-        fillField(By.name("Фамилия"), "Петров");
-        fillField(By.name("Имя"), "Петр");
-        fillField(By.name("Отчество"), "Петрович");
-        driver.findElement(By.id("//*[@id='dp1518469728835']")).click();
-        driver.findElement(By.id("//*[@id='dp1518550956741']")).click();
-        driver.findElement(By.id("//*[@id='dp1518550956741']")).sendKeys(01.01.1981);
+        fillField(By.name("surname"), "Петров");
+        fillField(By.name("name"), "Петр");
+        fillField(By.name("middlename"), "Петрович");
+        driver.findElement(By.name("birthDate")).click();
+        fillField(By.name("birthDate"), "01.01.1983");
         driver.findElement(By.name("male")).click();
 
-        fillField(By.name("Серия и номер паспорта"), "1111 123456");
-        fillField(By.name("Кем выдан"), "Сбербанк");
+        fillField(By.name("passport_series"), "1111 ");
+        fillField(By.name("passport_number"), "123456");
+        driver.findElement(By.name("issueDate")).click();
+        fillField(By.name("issueDate"), "01.01.1985");
+        fillField(By.name("issuePlace"), "1111 ");
 
 
-        Assert.assertEquals("Номер телефона вводится в 10-ти значном формате");
-        driver.findElement(By.xpath("//*[contains(text(),'Номер телефона')]")).getText();
+        Assert.assertEquals("Номер телефона вводится в 10-ти значном формате"), driver.findElement(By.xpath("//*[contains(text(),'Номер телефона')]")).getText();
 
         Assert.assertEquals("Ivanov",
                 driver.findElement(By.name("LastName")).getAttribute( "value"));
@@ -85,8 +87,7 @@ public class sbertest {
 
         driver.findElement(By.xpath("//*[contains(text(),'Продолжить')]")).click();
 
-        Assert.assertEquals("Заполнены не все обязательные поля");
-        driver.findElement(By.xpath("/*[contains(text(),'обязательные')]")).getText();
+        Assert.assertEquals("Заполнены не все обязательные поля", driver.findElement(By.xpath("/*[contains(text(),'обязательные')]")).getText());
     }
 
     public void fillField(By locator, String value){
