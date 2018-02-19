@@ -7,9 +7,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.yandex.qatools.allure.annotations.Title;
+import steps.InsuranceSteps;
+import steps.MainPageSteps;
+import steps.SendAppSteps;
+
+import java.util.HashMap;
 
 public class sbertest extends BaseTest{
 
+        MainPageSteps mainPageSteps = new MainPageSteps();
+        InsuranceSteps insuranceSteps= new InsuranceSteps();
+        SendAppSteps sendAppSteps= new SendAppSteps();
+
+        HashMap<String, String> testData - new HashMap<>();
+
+        @Title("Страхование путешественников")
 
     @Test
     @Ignore
