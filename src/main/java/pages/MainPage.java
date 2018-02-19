@@ -20,7 +20,7 @@ public class MainPage {
     }
 
     public void selectMainMenu(String menuItem){
-        mainMenu.findElement(By.xpath(".//li[contains(@class,current)]/*[contains(text,'"+menuItem+')]")).click();
+        mainMenu.findElement(By.xpath(".//li[contains(@class,current)]/*[contains(text,'"+menuItem+")]")).click();
 
 }
     public void selectSubMenu(String menuItem){

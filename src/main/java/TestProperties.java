@@ -3,14 +3,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import static java.time.chrono.ThaiBuddhistChronology.INSTANCE;
-
 public class TestProperties extends Properties {
 
-    private  final TestProperties properties = new Properties();
+    private final Properties properties = new Properties();
+
+    private static TestProperties INSTANCE = null;
 
     private TestProperties() {
-        System.setProperty("environment", "application");
+        System.setProperty("environment", "environment");
         try {
             properties.load(new FileInputStream(new File("./" + System.getProperty("environment") + ".properties")));
         } catch (IOException e) {
@@ -18,7 +18,7 @@ public class TestProperties extends Properties {
         }
     }
 
-    public static TestProperties get.Instance() {
+    public static TestProperties getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new TestProperties();
         }
