@@ -7,9 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class InsurancePage {
 
-    @FindBy(xpath = "//div[contains(@class,'sbrf-rich-wrapper')]/p/*[contains(text,'Оформить сейчас')]")
+    @FindBy(xpath = "//div[contains(@class,'b-form-active-box')]")
     WebElement sendButton;
 
+    @FindBy(xpath = "//span[contains(text(),'Оформить')]")
+    WebElement sendButton;
 
     public InsurancePage(WebDriver driver){
 

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseSteps {
 
-    private static WebDriver driver;
+    public static WebDriver driver;
 
     public static WebDriver getDriver()  {return driver;}
 

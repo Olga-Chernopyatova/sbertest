@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.allure.annotations.Title;
+import steps.ConfirmSteps;
 import steps.InsuranceSteps;
 import steps.MainPageSteps;
 import steps.SendAppSteps;
@@ -16,15 +17,51 @@ import java.util.HashMap;
 
 public class sbertest extends BaseTest{
 
+
+    @Test
+    @Title("Страхование путешественников")
+    public void testInsurance () {
+
         MainPageSteps mainPageSteps = new MainPageSteps();
-        InsuranceSteps insuranceSteps= new InsuranceSteps();
+        ConfirmSteps confirmSteps = new ConfirmSteps();
+        InsuranceSteps insuranceSteps = new InsuranceSteps();
         SendAppSteps sendAppSteps= new SendAppSteps();
 
-        HashMap<String, String> testData - new HashMap<>();
+        HashMap<String, String> testData = new HashMap<>();
 
         @Title("Страхование путешественников")
 
     @Test
+        public void Test() {
+            testData.put("insured0_surname", "Ivanov");
+            testData.put("insured0_name", "Ivan");
+            testData.put("insured0_birthDate", "01.01.1983");
+            testData.put("surname", "Петров");
+            testData.put("name", "Петр");
+            testData.put("middlename", "Петрович");
+            testData.put("birthDate", "01.01.1983");
+            testData.put("passport_series", "1111");
+            testData.put("passport_number", "123456");
+            testData.put("issueDate", "01.01.1985");
+            testData.put("issuePlace", "Moscow");
+
+            mainPageSteps.selectMenuItem("Застраховать себя и имущество");
+            mainPageSteps.selectMenuInsurance("Страхование путешественников");
+            confirmSteps.checkPageTitle("Страхование путешественников");
+            confirmSteps.goToInsurancePage();
+            insuranceSteps.selectMenuCoverage();
+            insuranceSteps.selectMenuSubmit();
+            insuranceSteps.goToSendAppPage();
+            sendAppSteps.checkPageTitle();
+
+            sendAppSteps.fillFields(testData);
+
+            sendAppSteps.checkFillFields(testData);
+            sendAppSteps.checkErrorMessageField();
+
+        }
+
+        }
     @Ignore
     public void testSber () {
         driver.get(baseUrl);
@@ -41,8 +78,7 @@ public class sbertest extends BaseTest{
         for (String winHandle : driver.getWindowHandles()) {
             driver.switchTo().window(winHandle);
         }
-//        driver.findElement(By.xpath("//*[contains(text(),'Оформить сейчас')]")).click();
-        driver.findElement(By.xpath("//*[contains(text(),'Минимальная')]")).click();
+       driver.findElement(By.xpath("//div[contains(@class,'b-form-active-box')]")).click();
         driver.findElement(By.xpath("//span[contains(text(),'Оформить')]")).click();
 
         fillField(By.name("insured0_surname"), "Ivanov");
@@ -61,7 +97,7 @@ public class sbertest extends BaseTest{
         fillField(By.name("passport_number"), "123456");
         driver.findElement(By.name("issueDate")).click();
         fillField(By.name("issueDate"), "01.01.1985");
-        fillField(By.name("issuePlace"), "Sberbank");
+        fillField(By.name("issuePlace"), "Moscow");
 
 
       //  Assert.assertEquals("Номер телефона вводится в 10-ти значном формате"), driver.findElement(By.xpath("//*[contains(text(),'Номер телефона')]")).getText();

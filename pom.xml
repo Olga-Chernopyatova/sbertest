@@ -8,7 +8,12 @@
     <artifactId>firsttest</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
+    <properties>
+        <allure.version>1.5.2</allure.version>
+        <aspectj.version>1.8.9</aspectj.version>
+        <complier.version>1.8</complier.version>
+        <selenium.version>3.8.0</selenium.version>
+    </properties>
 
     <build>
         <plugins>
@@ -25,11 +30,11 @@
             <groupId>org.apache.maven.plugins</groupId> 
             <artifactId>maven-surefire-plugin</artifactId> 
             <version>2.19.1</version> 
-            <configuration> 
-                <includes> 
+            <configuration>
+               <includes> 
                     <include>**/TestRunner.java</include> 
-                </includes> 
-                <testFailureIgnore>true</testFailureIgnore> 
+                </includes>
+                <testFailureIgnore>true</testFailureIgnore>
                 <argLine> 
                     -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.8.13/aspectjweaver-
                     1.8.13.jar 
@@ -37,10 +42,17 @@
                 <properties>
                     <property>
                         <name>listener</name>
-                        <value>sbertest.util.AllureListener</value>
+                        <value>java.util.AllureListener</value>
                     </property>
                 </properties>
             </configuration> 
+            <dependencies>
+                <dependency>
+                    <groupId>org.aspectj</groupId>
+                    <artifactId>aspectjweaver</artifactId>
+                    <version>1.8.13</version>
+                </dependency>
+            </dependencies>
         </plugin>
             <plugin>
                 <groupId>ru.yandex.qatools.allure</groupId>
@@ -49,7 +61,7 @@
                 <executions>
                     <execution>
                         <id>allure-report</id>
-                        <phase>sbertest</phase>
+                        <phase>post-integration-test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
@@ -76,18 +88,9 @@
             <version>1.6.2</version> 
         </dependency>
         <dependency> 
-            <groupId>org.aspectj</groupId> 
-            <artifactId>aspectjweaver</artifactId> 
-            <version>${aspectj.version}</version> 
-        </dependency>
-        <dependency>     <groupId>ru.yandex.qatools.allure</groupId> 
+            <groupId>ru.yandex.qatools.allure</groupId> 
             <artifactId>allure-junit-adaptor</artifactId> 
-            <version>1.4.23</version> 
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.8.13</version>
+            <version>1.5.4</version> 
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
