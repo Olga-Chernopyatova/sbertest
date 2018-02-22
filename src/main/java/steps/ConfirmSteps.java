@@ -2,6 +2,7 @@ package steps;
 
 import pages.ConfirmPage;
 import ru.yandex.qatools.allure.annotations.Step;
+
 import static org.junit.Assert.assertTrue;
 
 public class ConfirmSteps {
@@ -18,6 +19,4 @@ public class ConfirmSteps {
                 actualTitle, expectedTitle), actualTitle.contains(expectedTitle));
     }
 
-    public void goToInsurancePage() {
-    }
 }

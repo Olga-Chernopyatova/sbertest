@@ -8,14 +8,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.allure.annotations.Title;
-import steps.ConfirmSteps;
-import steps.InsuranceSteps;
-import steps.MainPageSteps;
-import steps.SendAppSteps;
+import steps.*;
 
 import java.util.HashMap;
 
-public class sbertest extends BaseTest{
+public class SberTest extends BaseSteps{
 
 
     @Test
@@ -29,10 +26,7 @@ public class sbertest extends BaseTest{
 
         HashMap<String, String> testData = new HashMap<>();
 
-        @Title("Страхование путешественников")
 
-    @Test
-        public void Test() {
             testData.put("insured0_surname", "Ivanov");
             testData.put("insured0_name", "Ivan");
             testData.put("insured0_birthDate", "01.01.1983");
@@ -45,23 +39,24 @@ public class sbertest extends BaseTest{
             testData.put("issueDate", "01.01.1985");
             testData.put("issuePlace", "Moscow");
 
-            mainPageSteps.selectMenuItem("Застраховать себя и имущество");
+            mainPageSteps.selectMenuItem("Застраховать себя");
             mainPageSteps.selectMenuInsurance("Страхование путешественников");
             confirmSteps.checkPageTitle("Страхование путешественников");
-            confirmSteps.goToInsurancePage();
+            insuranceSteps.stepClickToBanner();
+            insuranceSteps.stepSwitchToWindow();
+
             insuranceSteps.selectMenuCoverage();
             insuranceSteps.selectMenuSubmit();
-            insuranceSteps.goToSendAppPage();
-            sendAppSteps.checkPageTitle();
 
             sendAppSteps.fillFields(testData);
 
             sendAppSteps.checkFillFields(testData);
-            sendAppSteps.checkErrorMessageField();
+            sendAppSteps.stepSubmitForm();
+            sendAppSteps.checkErrorMessageField("Заполнены не все обязательные поля");
 
-        }
+    }
 
-        }
+
     @Ignore
     public void testSber () {
         driver.get(baseUrl);
