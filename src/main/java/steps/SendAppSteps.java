@@ -12,7 +12,7 @@ public class SendAppSteps {
 
 
     @Step("поле {0} заполняется значением {1}")
-    public void fillField(String field, String value){
+    public static void fillField(String field, String value){
         new SendAppPage(BaseSteps.getDriver()).fillField(field, value);
     }
 

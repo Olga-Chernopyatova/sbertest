@@ -41,12 +41,13 @@ public class SberTest extends BaseSteps{
 
             mainPageSteps.selectMenuItem("Застраховать себя");
             mainPageSteps.selectMenuInsurance("Страхование путешественников");
-            confirmSteps.checkPageTitle("Страхование путешественников");
-            insuranceSteps.stepClickToBanner();
-            insuranceSteps.stepSwitchToWindow();
+
+            ConfirmSteps.checkPageTitle("Страхование путешественников");
+            ConfirmSteps.stepGoToInsurancePage();
 
             insuranceSteps.selectMenuCoverage();
-            insuranceSteps.selectMenuSubmit();
+            insuranceSteps.stepClickToBanner();
+            insuranceSteps.stepSwitchToWindow();
 
             sendAppSteps.fillFields(testData);
 

@@ -1,7 +1,7 @@
 package steps;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,7 +20,7 @@ public class BaseSteps {
     protected static String baseUrl;
     public static Properties properties = TestProperties.getInstance().getProperties();
 
-    @BeforeClass
+    @Before
     public static void setUp() {
         switch (properties.getProperty("browser")) {
             case "firefox":
@@ -44,7 +44,7 @@ public class BaseSteps {
         driver.get(baseUrl);
     }
 
-    @AfterClass
+    @After
     public static void tearDown()  {
         driver.quit();
     }
@@ -58,7 +58,7 @@ public class BaseSteps {
         driver.findElement(locator).sendKeys(value);
     }
 
-    @Attachment(type = "image/png", value = "Screensjot")
+    @Attachment(type = "image/png", value = "Screenshot")
     public static byte[] takeScreenshot() {return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);}
 
 }
