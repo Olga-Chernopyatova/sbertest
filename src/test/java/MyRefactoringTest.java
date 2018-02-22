@@ -1,4 +1,4 @@
-public class MyRefactoringTest extends BaseTest{
+//public class MyRefactoringTest extends BaseTest{
 //
 //    @Test
 //    public void newsbertest(){
@@ -14,4 +14,4 @@ public class MyRefactoringTest extends BaseTest{
 //        new InsurancePage (driver).sendBtn.click();
 //
 //    }
-}
+//}

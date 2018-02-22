@@ -7,18 +7,26 @@ public class InsuranceSteps {
 
     @Step("выполнен выбор суммы страховой защиты  Минимальная")
     public void selectMenuCoverage(){
-        new InsurancePage().sendAppBtn.click();
+        new InsurancePage(BaseSteps.getDriver()).activeButton.click();
     }
 
-    public void selectMenuSubmit() {
-    }
-
-    public void goToSendAppPage() {
-    }
 
     @Step("выполнено нажатие на Оформить")
     public void selectMenuSubmit() {
-            new InsurancePage().sendAppBtn.click();
+            new InsurancePage(BaseSteps.getDriver()).sendButton.click();
+    }
+
+
+    @Step("выплнено нажатие - Оформить Онлайн")
+    public void stepClickToBanner(){
+        new InsurancePage(BaseSteps.getDriver()).bannerBtn.click();
+    }
+
+    @Step("выплнено переключение в новое окно")
+    public void stepSwitchToWindow(){
+        for (String winHandle : BaseSteps.getDriver().getWindowHandles()) {
+            BaseSteps.getDriver().switchTo().window(winHandle);
+        }
     }
 
 

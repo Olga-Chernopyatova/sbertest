@@ -1,10 +1,12 @@
+package util;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 public class TestProperties extends Properties {
-
+    //перенесла в пакет util
     private final Properties properties = new Properties();
 
     private static TestProperties INSTANCE = null;

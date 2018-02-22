@@ -8,10 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 public class InsurancePage {
 
     @FindBy(xpath = "//div[contains(@class,'b-form-active-box')]")
-    WebElement sendButton;
+    public WebElement activeButton; //переименовала переменную, было одинаковое название
 
     @FindBy(xpath = "//span[contains(text(),'Оформить')]")
-    WebElement sendButton;
+    public WebElement sendButton;
+
+
+    @FindBy(xpath = "//*/img[contains(@src, 'banner-zashita-traveler.jpg')]")
+    public WebElement bannerBtn; //веб-элмент баннер для открытия формы - Оформить страховку онлайн
 
     public InsurancePage(WebDriver driver){
 

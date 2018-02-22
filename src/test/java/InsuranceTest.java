@@ -5,9 +5,6 @@
 //import org.openqa.selenium.WebElement;
 //import org.openqa.selenium.support.ui.ExpectedConditions;
 //import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 //public class InsuranceTest extends BaseTest{
 
   //  @Test
@@ -47,5 +44,5 @@ import org.openqa.selenium.support.ui.WebDriverWait;
    //             driver.findElement(By.name("MiddleName")).getAttribute( "value"));
   //  }
 
-    }
+//    }
 
