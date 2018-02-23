@@ -7,7 +7,7 @@ public class ScenarioSteps {
 
     MainPageSteps mainPageSteps = new MainPageSteps();
 
-    ConfirmSteps dmsSteps = new ConfirmSteps();
+    ConfirmSteps confirmSteps = new ConfirmSteps();
 
     InsuranceSteps insuranceSteps = new InsuranceSteps();
 
@@ -15,38 +15,38 @@ public class ScenarioSteps {
 
     @When("^выбран пункт меню \"(.+)\"$")
     public void selectMenuItem(String menuItem){
-        MainPageSteps.selectMenuItem(menuItem);
+        mainPageSteps.selectMenuItem(menuItem);
     }
 
     @When("^выбран вид страхования \"(.+)\"$")
     public void selectMenuInsurance(String menuName){
-        MainPageSteps.selectMenuInsurance(menuName);
+        mainPageSteps.selectMenuInsurance(menuName);
     }
 
     @When("^выполнено нажати на кнопку Оформить онлайн$")
     public void clickBtnSendApp(){
-        ConfirmSteps.stepGoToInsurancePage();
+        confirmSteps.stepGoToInsurancePage();
     }
 
-    @When ("выполнен выбор суммы страховой защиты  Минимальная")
+    @When ("выполнен выбор суммы страховой защиты Минимальная")
     public void selectMenuCoverage() {
-    InsuranceSteps.selectMenuCoverage();
+        insuranceSteps.selectMenuCoverage();
     }
 
     @When("выполнено нажатие на Оформить")
     public void stepClickToBanner() {
-        InsuranceSteps.stepClickToBanner();
+        insuranceSteps.stepClickToBanner();
     }
 
     @When("выплнено переключение в новое окно")
     public void stepSwitchToWindow(){
-        InsuranceSteps.stepSwitchToWindow();
+        insuranceSteps.stepSwitchToWindow();
     }
 
-    @When("заполняются поля")
+    @When("заполняются поля:")
     public void fillForm(DataTable fields){
         fields.asMap(String.class, String.class)
-                .forEach((field, value) -> SendAppSteps.fillField(field, value));
+                .forEach((field, value) -> sendAppSteps.fillField(field, value));
 
     }
 }
